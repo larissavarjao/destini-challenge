@@ -1,7 +1,7 @@
 import 'story_model.dart';
 
 class StoryController {
-  int currentStory = 0;
+  int _currentStory = 0;
   List<Story> _stories = [
     Story(
         'Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: "Need a ride, boy?".',
@@ -30,48 +30,38 @@ class StoryController {
   ];
 
   String getStory() {
-    return _stories[currentStory].title;
+    return _stories[_currentStory].title;
   }
 
   String getFirstChoice() {
-    return _stories[currentStory].firstChoice;
+    return _stories[_currentStory].firstChoice;
   }
 
   String getSecondChoice() {
-    return _stories[currentStory].secondChoice;
+    return _stories[_currentStory].secondChoice;
   }
 
   void nextStory(int currentChoice) {
-    if (currentChoice == 1 && currentStory == 0) {
-      currentStory = 2;
-    } else if (currentChoice == 2 && currentStory == 0) {
-      currentStory = 1;
-    } else if (currentChoice == 1 && currentStory == 1) {
-      currentStory = 2;
-    } else if (currentChoice == 2 && currentStory == 1) {
-      currentStory = 3;
-    } else if (currentChoice == 1 && currentStory == 2) {
-      currentStory = 5;
-    } else if (currentChoice == 2 && currentStory == 2) {
-      currentStory = 4;
-    } else if (currentStory == 3 || currentStory == 4 || currentStory == 5) {
+    if (currentChoice == 1 && _currentStory == 0) {
+      _currentStory = 2;
+    } else if (currentChoice == 2 && _currentStory == 0) {
+      _currentStory = 1;
+    } else if (currentChoice == 1 && _currentStory == 1) {
+      _currentStory = 2;
+    } else if (currentChoice == 2 && _currentStory == 1) {
+      _currentStory = 3;
+    } else if (currentChoice == 1 && _currentStory == 2) {
+      _currentStory = 5;
+    } else if (currentChoice == 2 && _currentStory == 2) {
+      _currentStory = 4;
+    } else if (_currentStory == 3 || _currentStory == 4 || _currentStory == 5) {
       reset();
     }
   }
 
   void reset() {
-    currentStory = 0;
+    _currentStory = 0;
   }
 }
-
-//TODO: Step 23 - Use the currentStory property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
-
-//TODO: Step 25 - Change the storyNumber property into a private property so that only story_brain.dart has access to it. You can do this by right clicking on the name (storyNumber) and selecting Refactor -> Rename to make the change across all the places where it's used.
-
-//TODO: Step 20 - Download the story plan here: https://drive.google.com/uc?export=download&id=1KU6EghkO9Hf2hRM0756xFHgNaZyGCou3
-
-//TODO: Step 21 - Using the story plan, update nextStory() to change the storyNumber depending on the choice made by the user. e.g. if currentChoice was equal to 1 and the storyNumber is 0, the storyNumber should become 2.
-
-//TODO: Step 22 - In nextStory() if the storyNumber is equal to 3 or 4 or 5, that means it's the end of the game and it should call a method called restart() that resets the storyNumber to 0.
 
 //TODO: Step 27 - Create a method called buttonShouldBeVisible() which checks to see if storyNumber is 0 or 1 or 2 (when both buttons should show choices) and return true if that is the case, else it should return false.
