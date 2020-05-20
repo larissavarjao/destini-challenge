@@ -7,7 +7,6 @@ This is an app to practice flutter and choose your own adventure game like Bande
 ```shell
 cd destini-challenge/
 flutter run
-
 ```
 
 Or do Fn + F5 if you're on mac notebook
