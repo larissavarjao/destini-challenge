@@ -30,29 +30,47 @@ class StoryController {
   ];
 
   String getStory() {
-    return _stories.first.title;
+    return _stories[currentStory].title;
   }
 
   String getFirstChoice() {
-    return _stories.first.firstChoice;
+    return _stories[currentStory].firstChoice;
   }
 
   String getSecondChoice() {
-    return _stories.first.secondChoice;
+    return _stories[currentStory].secondChoice;
   }
 
   void nextStory(int currentChoice) {
-    currentStory++;
+    if (currentChoice == 1 && currentStory == 0) {
+      currentStory = 2;
+    } else if (currentChoice == 2 && currentStory == 0) {
+      currentStory = 1;
+    } else if (currentChoice == 1 && currentStory == 1) {
+      currentStory = 2;
+    } else if (currentChoice == 2 && currentStory == 1) {
+      currentStory = 3;
+    } else if (currentChoice == 1 && currentStory == 2) {
+      currentStory = 5;
+    } else if (currentChoice == 2 && currentStory == 2) {
+      currentStory = 4;
+    } else if (currentStory == 3 || currentStory == 4 || currentStory == 5) {
+      reset();
+    }
+  }
+
+  void reset() {
+    currentStory = 0;
   }
 }
 
-//TODO: Step 23 - Use the storyNumber property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
+//TODO: Step 23 - Use the currentStory property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
 
 //TODO: Step 25 - Change the storyNumber property into a private property so that only story_brain.dart has access to it. You can do this by right clicking on the name (storyNumber) and selecting Refactor -> Rename to make the change across all the places where it's used.
 
 //TODO: Step 20 - Download the story plan here: https://drive.google.com/uc?export=download&id=1KU6EghkO9Hf2hRM0756xFHgNaZyGCou3
 
-//TODO: Step 21 - Using the story plan, update nextStory() to change the storyNumber depending on the choice made by the user. e.g. if choiceNumber was equal to 1 and the storyNumber is 0, the storyNumber should become 2.
+//TODO: Step 21 - Using the story plan, update nextStory() to change the storyNumber depending on the choice made by the user. e.g. if currentChoice was equal to 1 and the storyNumber is 0, the storyNumber should become 2.
 
 //TODO: Step 22 - In nextStory() if the storyNumber is equal to 3 or 4 or 5, that means it's the end of the game and it should call a method called restart() that resets the storyNumber to 0.
 
